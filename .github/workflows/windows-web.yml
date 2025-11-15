@@ -17,6 +17,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
+      - name: Setup NSIS
+        uses: crazy-max/ghaction-setup-nsis@v3
+        with:
+          version: '3.08' 
           
       - name: Create plugins directory for NSIS
         run: mkdir -p "${PLUGINS_DIR}" | cp -rl "${WINDOWS_WEB_DIR}/plugins"/*/* "${PLUGINS_DIR}/"
