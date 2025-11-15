@@ -19,9 +19,9 @@ Unicode True
 !define SLIMETEMP "$TEMP\SlimeVRInstaller"
 
 # Define the Java Version Strings and to Check (JRE\relase -> JAVA_RUNTIME_VERSION=)
-!define JREVersion "17.0.15+6"
-!define JREDownloadURL "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.15%2B6/OpenJDK17U-jre_x64_windows_hotspot_17.0.15_6.zip"
-!define JREDownloadedFileZip "OpenJDK17U-jre_x64_windows_hotspot_17.0.15_6.zip"
+!define JREVersion "21.0.9+10"
+!define JREDownloadURL "https://cdn.azul.com/zulu/bin/zulu21.46.19-ca-jdk21.0.9-win_x64.zip"
+!define JREDownloadedFileZip "zulu21.46.19-ca-jdk21.0.9-win_x64.zip"
 Var JREneedInstall
 
 Var /GLOBAL SteamVRResult
@@ -399,7 +399,7 @@ Section "SlimeVR Server" SEC_SERVER
     SetOutPath $INSTDIR
 
     DetailPrint "Downloading SlimeVR Server..."
-    NScurl::http GET "https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip" "${SLIMETEMP}\SlimeVR-win64.zip" /CANCEL /RESUME /END
+    NScurl::http GET "https://gitproxy.mrhjx.cn/https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip" "${SLIMETEMP}\SlimeVR-win64.zip" /CANCEL /RESUME /END
     Pop $0 ; Status text ("OK" for success)
     ${If} $0 != "OK"
         Abort "Failed to download SlimeVR Server. Reason: $0."
@@ -485,7 +485,7 @@ Section "SteamVR Driver" SEC_VRDRIVER
     SetOutPath $INSTDIR
 
     DetailPrint "Downloading SteamVR Driver..."
-    NScurl::http GET "https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip" "${SLIMETEMP}\slimevr-openvr-driver-win64.zip" /CANCEL /RESUME /END
+    NScurl::http GET "https://gitproxy.mrhjx.cn/https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip" "${SLIMETEMP}\slimevr-openvr-driver-win64.zip" /CANCEL /RESUME /END
     Pop $0 ; Status text ("OK" for success)
     ${If} $0 != "OK"
         Abort "Failed to download SteamVR Driver. Reason: $0."
@@ -520,7 +520,7 @@ Section "SlimeVR Feeder App" SEC_FEEDER_APP
     SetOutPath $INSTDIR
 
     DetailPrint "Downloading SlimeVR Feeder App..."
-    NScurl::http GET "https://github.com/SlimeVR/SlimeVR-Feeder-App/releases/latest/download/SlimeVR-Feeder-App-win64.zip" "${SLIMETEMP}\SlimeVR-Feeder-App-win64.zip" /CANCEL /RESUME /END
+    NScurl::http GET "https://gitproxy.mrhjx.cn/https://github.com/SlimeVR/SlimeVR-Feeder-App/releases/latest/download/SlimeVR-Feeder-App-win64.zip" "${SLIMETEMP}\SlimeVR-Feeder-App-win64.zip" /CANCEL /RESUME /END
     Pop $0 ; Status text ("OK" for success)
     ${If} $0 != "OK"
         Abort "Failed to download SlimeVR Feeder App. Reason: $0."
