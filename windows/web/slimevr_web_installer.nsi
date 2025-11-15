@@ -20,8 +20,8 @@ Unicode True
 
 # Define the Java Version Strings and to Check (JRE\relase -> JAVA_RUNTIME_VERSION=)
 !define JREVersion "21.0.9+10"
-!define JREDownloadURL "https://cdn.azul.com/zulu/bin/zulu21.46.19-ca-jdk21.0.9-win_x64.zip"
-!define JREDownloadedFileZip "zulu21.46.19-ca-jdk21.0.9-win_x64.zip"
+!define JREDownloadURL "https://cdn.azul.com/zulu/bin/zulu21.46.19-ca-jre21.0.9-win_x64.zip"
+!define JREDownloadedFileZip "zulu21.46.19-ca-jre21.0.9-win_x64.zip"
 Var JREneedInstall
 
 Var /GLOBAL SteamVRResult
@@ -471,7 +471,7 @@ Section "Java JRE" SEC_JRE
     Pop $0
     DetailPrint "Unzipping finished with $0."
 
-    FindFirst $0 $1 "${SLIMETEMP}\OpenJDK\jdk-17.*-jre"
+    FindFirst $0 $1 "${SLIMETEMP}\OpenJDK\zulu21.*"
     loop:
         StrCmp $1 "" done
         CopyFiles /SILENT "${SLIMETEMP}\OpenJDK\$1\*" "$INSTDIR\jre"
@@ -829,7 +829,7 @@ Section "-un." un.SEC_POST_UNINSTALL
 SectionEnd
 
 LangString DESC_SEC_SERVER ${LANG_ENGLISH} "Installs latest SlimeVR Server."
-LangString DESC_SEC_JRE ${LANG_ENGLISH} "Downloads and copies Zulu JDK 21 to installation folder. Required for SlimeVR Server."
+LangString DESC_SEC_JRE ${LANG_ENGLISH} "Downloads and copies Zulu JER 21 to installation folder. Required for SlimeVR Server."
 LangString DESC_SEC_WEBVIEW ${LANG_ENGLISH} "Downloads and install Webview2 if not already installed. Required for the SlimeVR GUI"
 LangString DESC_SEC_VRDRIVER ${LANG_ENGLISH} "Installs latest SteamVR Driver for SlimeVR."
 LangString DESC_SEC_USBDRIVERS ${LANG_ENGLISH} "A list of USB drivers that are used by various boards."
