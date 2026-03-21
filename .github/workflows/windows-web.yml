@@ -22,8 +22,16 @@ jobs:
           (Get-Content "${{ env.WINDOWS_WEB_DIR }}\dlmacro.nsh") `
           -replace '/CANCEL /RESUME /END', '/FOLLOWLOCATION /CANCEL /RESUME /END' |
           Set-Content "${{ env.WINDOWS_WEB_DIR }}\dlmacro.nsh"
-      - name: Print dlmacro.nsh
-        run: cat ${{ env.WINDOWS_WEB_DIR }}/dlmacro.nsh
+          
+      - name: Patch dlmacro.nsh to follow redirects
+        run: |
+            (Get-Content "${{ env.WINDOWS_WEB_DIR }}\dlmacro.nsh") `
+            -replace '/CANCEL /RESUME /END', '/FOLLOWLOCATION /CANCEL /RESUME /END' |
+            Set-Content "${{ env.WINDOWS_WEB_DIR }}\dlmacro.nsh"
+
+      - name: Verify patch
+            run: cat "${{ env.WINDOWS_WEB_DIR }}\dlmacro.nsh"
+    
       - name: Create NSIS installer
         uses: joncloud/makensis-action@v5.0
         with:
