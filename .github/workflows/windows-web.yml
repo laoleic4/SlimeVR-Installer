@@ -14,19 +14,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6
         with:
           submodules: recursive
-
       - name: Create NSIS installer
-        uses: joncloud/makensis-action@v5.0
-        with:
-          script-file: ${{ env.WINDOWS_WEB_DIR }}/slimevr_web_installer.nsi
+        working-directory: windows/web
+        run: |
+          makensis /V4 slimevr_web_installer.nsi
 
       - name: Upload the installer as a build artifact
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@v6
         with:
-          name: "slimevr_web_installer"
+          # Artifact name
+          name: "slimevr_web_installer" # optional, default is artifact
+          # A file, directory or wildcard pattern that describes what to upload
           path: ${{ env.WINDOWS_WEB_DIR }}/slimevr_web_installer.exe
 
       - name: Upload to draft release
