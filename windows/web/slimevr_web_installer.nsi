@@ -50,18 +50,18 @@ Unicode True
 !define JREDLFileZip "zulu21.48.17-ca-jre21.0.10-win_x64.zip"
 
 !define SVRServerVersion "latest"
-!define SVRServerURLType "url" ; "url" or "local"
-!define SVRServerDLURL "https://edgeone.gh-proxy.org/https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
+!define SVRServerURLType "local"
+!define SVRServerDLURL "assets\SlimeVR-win64.zip"
 !define SVRServerDLFileZip "SlimeVR-Server-latest.zip"
 
 !define SVRDriverVersion "latest"
-!define SVRDriverURLType "url" ; "url" or "local"
-!define SVRDriverDLURL "https://edgeone.gh-proxy.org/https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
+!define SVRDriverURLType "local"
+!define SVRDriverDLURL "assets\slimevr-openvr-driver-win64.zip"
 !define SVRDriverDLFileZip "slimevr-openvr-driver-win64.zip"
 
 !define SVRFeederVersion "latest"
-!define SVRFeederURLType "url" ; "url" or "local"
-!define SVRFeederDLURL "https://edgeone.gh-proxy.org/https://github.com/SlimeVR/SlimeVR-Feeder-App/releases/latest/download/SlimeVR-Feeder-App-win64.zip"
+!define SVRFeederURLType "local"
+!define SVRFeederDLURL "assets\SlimeVR-Feeder-App-win64.zip"
 !define SVRFeederDLFileZip "SlimeVR-Feeder-App-latest.zip"
 
 Var JREneedInstall
