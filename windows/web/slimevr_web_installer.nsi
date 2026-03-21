@@ -44,24 +44,24 @@ Unicode True
 !define WV2DLURL "https://go.microsoft.com/fwlink/p/?LinkId=2124703"
 !define WV2DLFileZip "MicrosoftEdgeWebView2RuntimeInstaller.exe"
 # Define the Java Version Strings and to Check (JRE\relase -> JAVA_RUNTIME_VERSION=)
-!define JREVersion "17.0.17+10"
+!define JREVersion "21.0.10+7"
 !define JREURLType "url" ; "url" or "local"
-!define JREDLURL "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.17%2B10/OpenJDK17U-jre_x64_windows_hotspot_17.0.17_10.zip"
-!define JREDLFileZip "OpenJDK17U-jre_x64_windows_hotspot_17.0.17_10.zip"
+!define JREDLURL "https://cdn.azul.com/zulu/bin/zulu21.48.17-ca-jre21.0.10-win_x64.zip"
+!define JREDLFileZip "zulu21.48.17-ca-jre21.0.10-win_x64.zip"
 
 !define SVRServerVersion "latest"
 !define SVRServerURLType "url" ; "url" or "local"
-!define SVRServerDLURL "https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
+!define SVRServerDLURL "https://github.limoruirui.com/https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
 !define SVRServerDLFileZip "SlimeVR-Server-latest.zip"
 
 !define SVRDriverVersion "latest"
 !define SVRDriverURLType "url" ; "url" or "local"
-!define SVRDriverDLURL "https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
+!define SVRDriverDLURL "https://github.limoruirui.com/https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
 !define SVRDriverDLFileZip "slimevr-openvr-driver-win64.zip"
 
 !define SVRFeederVersion "latest"
 !define SVRFeederURLType "url" ; "url" or "local"
-!define SVRFeederDLURL "https://github.com/SlimeVR/SlimeVR-Feeder-App/releases/latest/download/SlimeVR-Feeder-App-win64.zip"
+!define SVRFeederDLURL "https://github.limoruirui.com/https://github.com/SlimeVR/SlimeVR-Feeder-App/releases/latest/download/SlimeVR-Feeder-App-win64.zip"
 !define SVRFeederDLFileZip "SlimeVR-Feeder-App-latest.zip"
 
 Var JREneedInstall
@@ -500,7 +500,7 @@ Section "Java JRE" SEC_JRE
         CreateDirectory "$INSTDIR\jre"
     SEC_JRE_DIRNOTFOUND:
 # Todo: Make a better way to copy the jre folder, since the version number is in the folder name
-    FindFirst $0 $1 "${SLIMETEMP}\OpenJDK\jdk-17.*-jre"
+    FindFirst $0 $1 "${SLIMETEMP}\OpenJDK\zulu21.*-win_x64"
     loop:
         StrCmp $1 "" done
         CopyFiles /SILENT "${SLIMETEMP}\OpenJDK\$1\*" "$INSTDIR\jre"
@@ -841,19 +841,19 @@ Section "-un." un.SEC_FIREWALL
     DetailPrint "Removing SlimeVR Server from firewall exceptions...."
     nsExec::Exec '"$INSTDIR\firewall_uninstall.bat"'
     Pop $0
-    Delete "$INSTDIR\firewall*.bat"
+    删除 "$INSTDIR\firewall*.bat"
 SectionEnd
 
 Section "-un." un.SEC_POST_UNINSTALL
     DetailPrint "Unregistering installation..."
     DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SlimeVR"
-    Delete "$INSTDIR\uninstall.exe"
+    删除 "$INSTDIR\uninstall.exe"
     RMDir $INSTDIR
     DetailPrint "Done."
 SectionEnd
 
 LangString DESC_SEC_SERVER ${LANG_ENGLISH} "Installs latest SlimeVR Server."
-LangString DESC_SEC_JRE ${LANG_ENGLISH} "Downloads and copies Java JRE 17 to installation folder. Required for SlimeVR Server."
+LangString DESC_SEC_JRE ${LANG_ENGLISH} "Downloads and copies Zulu JRE 17 to installation folder. Required for SlimeVR Server."
 LangString DESC_SEC_WEBVIEW ${LANG_ENGLISH} "Downloads and install Webview2 if not already installed. Required for the SlimeVR GUI"
 LangString DESC_SEC_VRDRIVER ${LANG_ENGLISH} "Installs latest SteamVR Driver for SlimeVR."
 LangString DESC_SEC_USBDRIVERS ${LANG_ENGLISH} "A list of USB drivers that are used by various boards."
