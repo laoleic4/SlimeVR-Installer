@@ -841,13 +841,13 @@ Section "-un." un.SEC_FIREWALL
     DetailPrint "Removing SlimeVR Server from firewall exceptions...."
     nsExec::Exec '"$INSTDIR\firewall_uninstall.bat"'
     Pop $0
-    删除 "$INSTDIR\firewall*.bat"
+    Delete "$INSTDIR\firewall*.bat"
 SectionEnd
 
 Section "-un." un.SEC_POST_UNINSTALL
     DetailPrint "Unregistering installation..."
     DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\SlimeVR"
-    删除 "$INSTDIR\uninstall.exe"
+    Delete "$INSTDIR\uninstall.exe"
     RMDir $INSTDIR
     DetailPrint "Done."
 SectionEnd
