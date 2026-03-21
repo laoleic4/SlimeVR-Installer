@@ -9,19 +9,23 @@ jobs:
     runs-on: windows-latest
     
     env:
-      # The directory of the web installer project
       WINDOWS_WEB_DIR: ${{ github.workspace }}/windows/web
       PLUGINS_DIR: ${{ github.workspace }}/NSIS_Plugins
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
-          
+
+      - name: Install NSIS
+        run: choco install nsis --no-progress -y
+
       - name: Create plugins directory for NSIS
-        run: mkdir -p "${PLUGINS_DIR}" | cp -rl "${WINDOWS_WEB_DIR}/plugins"/*/* "${PLUGINS_DIR}/"
+        run: |
+          mkdir -p "${PLUGINS_DIR}"
+          cp -rl "${WINDOWS_WEB_DIR}/plugins"/*/* "${PLUGINS_DIR}/"
         shell: bash
-        
+          
       - name: Create NSIS installer
         uses: joncloud/makensis-action@v4
         with:
@@ -31,7 +35,5 @@ jobs:
       - name: Upload the installer as a build artifact
         uses: actions/upload-artifact@v4
         with:
-          # Artifact name
-          name: "slimevr_web_installer" # optional, default is artifact
-          # A file, directory or wildcard pattern that describes what to upload
+          name: "slimevr_web_installer"
           path: ${{ env.WINDOWS_WEB_DIR }}/slimevr_web_installer.exe
