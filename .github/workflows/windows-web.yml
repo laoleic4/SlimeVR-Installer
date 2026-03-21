@@ -18,9 +18,9 @@ jobs:
         with:
           submodules: recursive
       - name: Create NSIS installer
-        working-directory: windows/web
-        run: |
-          makensis /V4 slimevr_web_installer.nsi
+        uses: joncloud/makensis-action@v5.0
+        with:
+          script-file: ${{ env.WINDOWS_WEB_DIR }}/slimevr_web_installer.nsi
 
       - name: Upload the installer as a build artifact
         uses: actions/upload-artifact@v6
