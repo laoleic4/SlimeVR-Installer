@@ -434,7 +434,7 @@ Section "SlimeVR Server" SEC_SERVER
 
     SetOutPath $INSTDIR
 
-    !insertmacro dlFile "${SVRServerURLType}" "SlimeVR Server" "${SVRServerVersion}" "${SVRServerDLURL}" "${SVRServerDLFileZip}"
+    !insertmacro dlFileInetc "SlimeVR Server" "${SVRServerVersion}" "${SVRServerDLURL}" "${SVRServerDLFileZip}"
 
     CreateDirectory "${SLIMETEMP}\SlimeVR"
     !insertmacro unzipFile "SlimeVR Server" "${SVRServerVersion}" "${SLIMETEMP}\${SVRServerDLFileZip}" "${SLIMETEMP}\SlimeVR"
@@ -484,7 +484,7 @@ SectionEnd
 Section "SteamVR Driver" SEC_VRDRIVER
     SetOutPath $INSTDIR
 
-    !insertmacro dlFile "${SVRDriverURLType}" "SteamVR Driver" "${SVRDriverVersion}" "${SVRDriverDLURL}" "${SVRDriverDLFileZip}"
+    !insertmacro dlFileInetc "SteamVR Driver" "${SVRDriverVersion}" "${SVRDriverDLURL}" "${SVRDriverDLFileZip}"
     !insertmacro unzipFile "SteamVR Driver" "${SVRDriverVersion}" "${SLIMETEMP}\${SVRDriverDLFileZip}" "${SLIMETEMP}\slimevr-openvr-driver-win64"
 
     # Include SteamVR powershell script to register/unregister driver
