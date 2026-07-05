@@ -47,12 +47,12 @@ Unicode True
 
 !define SVRServerVersion "latest"
 !define SVRServerURLType "url" ; "url" or "local"
-!define SVRServerDLURL "https://cdn.crashmc.com/https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
+!define SVRServerDLURL "https://cdn.gh-proxy.org/https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
 !define SVRServerDLFileZip "SlimeVR-Server-latest.zip"
 
 !define SVRDriverVersion "latest"
 !define SVRDriverURLType "url" ; "url" or "local"
-!define SVRDriverDLURL "https://cdn.crashmc.com/https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
+!define SVRDriverDLURL "https://cdn.gh-proxy.org/https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
 !define SVRDriverDLFileZip "slimevr-openvr-driver-win64.zip"
 
 SetCompressor lzma
