@@ -43,6 +43,49 @@
 
 
 
+; Macro: dlFileInetc
+; Same purpose as dlFile (source_type "url" only), but uses the inetc plugin
+; (WinInet backend -> Schannel/system TLS stack) instead of NScurl (OpenSSL backend).
+; Use this for hosts that block/reset connections coming from an OpenSSL TLS
+; fingerprint (e.g. some Cloudflare-fronted personal mirrors) while allowing
+; normal browsers / WinInet-based clients through.
+; Also retries up to 3 times with a short delay, since some mirrors are only
+; intermittently unavailable (e.g. while being rebuilt).
+; Parameters:
+;   name        - Display name of the file (for user messages)
+;   version     - Version string (for user messages)
+;   url         - URL to download from
+;   local_file  - File name to save as in ${SLIMETEMP} (e.g., "archive.zip")
+; Requires: inetc plugin available via !AddPluginDir, and $R9 as a scratch var
+;           (declare "Var R9" is not needed, R9 is a built-in NSIS register)
+; Example:
+;   !insertmacro dlFileInetc "SlimeVR Server" "${SVRServerVersion}" "${SVRServerDLURL}" "${SVRServerDLFileZip}"
+!macro dlFileInetc name version url local_file
+    DetailPrint "Downloading ${name} ${version}..."
+    StrCpy $R9 0 ; retry counter
+
+    dlFileInetc_retry:
+    inetc::get /USERAGENT "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0" \
+        /TIMEOUT 30000 \
+        "${url}" "${SLIMETEMP}\${local_file}" /END
+    Pop $0 ; Status text ("OK" for success)
+
+    ${If} $0 != "OK"
+        IntOp $R9 $R9 + 1
+        ${If} $R9 < 3
+            DetailPrint "Download of ${name} ${version} failed ($0), retrying ($R9/3)..."
+            Sleep 3000
+            Goto dlFileInetc_retry
+        ${Else}
+            Abort "Failed to download ${name} ${version} after 3 attempts. Reason: $0."
+        ${EndIf}
+    ${EndIf}
+
+    DetailPrint "Downloaded!"
+!macroend
+
+
+
 ; Macro: unzipFile
 ; Extracts a ZIP archive from the temporary installer directory into a target subdirectory.
 ; Parameters:
