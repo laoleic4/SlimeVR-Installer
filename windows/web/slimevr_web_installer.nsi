@@ -40,19 +40,19 @@ Unicode True
 !define MVCDLFileZip "vc_redist.x64.exe"
 
 # Define the Java Version Strings and to Check (JRE\relase -> JAVA_RUNTIME_VERSION=)
-!define JREVersion "17.0.17+10"
+!define JREVersion "21.0.11+10"
 !define JREURLType "url" ; "url" or "local"
-!define JREDLURL "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.17%2B10/OpenJDK17U-jre_x64_windows_hotspot_17.0.17_10.zip"
-!define JREDLFileZip "OpenJDK17U-jre_x64_windows_hotspot_17.0.17_10.zip"
+!define JREDLURL "https://cdn.azul.com/zulu/bin/zulu21.50.19-ca-fx-jre21.0.11-win_x64.zip"
+!define JREDLFileZip "zulu21.50.19-ca-fx-jre21.0.11-win_x64.zip"
 
 !define SVRServerVersion "latest"
 !define SVRServerURLType "url" ; "url" or "local"
-!define SVRServerDLURL "https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
+!define SVRServerDLURL "https://cdn.crashmc.com/https://github.com/SlimeVR/SlimeVR-Server/releases/latest/download/SlimeVR-win64.zip"
 !define SVRServerDLFileZip "SlimeVR-Server-latest.zip"
 
 !define SVRDriverVersion "latest"
 !define SVRDriverURLType "url" ; "url" or "local"
-!define SVRDriverDLURL "https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
+!define SVRDriverDLURL "https://cdn.crashmc.com/https://github.com/SlimeVR/SlimeVR-OpenVR-Driver/releases/latest/download/slimevr-openvr-driver-win64.zip"
 !define SVRDriverDLFileZip "slimevr-openvr-driver-win64.zip"
 
 SetCompressor lzma
@@ -468,7 +468,7 @@ Section "Java JRE" SEC_JRE
         CreateDirectory "$INSTDIR\jre"
     SEC_JRE_DIRNOTFOUND:
 # Todo: Make a better way to copy the jre folder, since the version number is in the folder name
-    FindFirst $0 $1 "${SLIMETEMP}\OpenJDK\jdk-17.*-jre"
+    FindFirst $0 $1 "${SLIMETEMP}\OpenJDK\zulu21.*-win_x64"
     loop:
         StrCmp $1 "" done
         CopyFiles /SILENT "${SLIMETEMP}\OpenJDK\$1\*" "$INSTDIR\jre"
@@ -764,7 +764,7 @@ Section "-un." un.SEC_POST_UNINSTALL
 SectionEnd
 
 LangString DESC_SEC_SERVER ${LANG_ENGLISH} "Installs latest SlimeVR Server."
-LangString DESC_SEC_JRE ${LANG_ENGLISH} "Downloads and copies Java JRE 17 to installation folder. Required for SlimeVR Server."
+LangString DESC_SEC_JRE ${LANG_ENGLISH} "Downloads and copies Zulu JRE 21 to installation folder. Required for SlimeVR Server."
 LangString DESC_SEC_VRDRIVER ${LANG_ENGLISH} "Installs latest SteamVR Driver for SlimeVR."
 LangString DESC_SEC_USBDRIVERS ${LANG_ENGLISH} "A list of USB drivers that are used by various boards."
 LangString DESC_SEC_MSVCPP ${LANG_ENGLISH} "Installs the latest Microsoft Visual C++ Redistributable Version (required by the SteamVR Driver)"
