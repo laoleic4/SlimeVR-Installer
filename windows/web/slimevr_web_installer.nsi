@@ -11,6 +11,9 @@ Unicode True
 !AddPluginDir /x86-unicode     "plugins\NsProcess\x86-unicode"
 !AddPluginDir /x86-ansi        "plugins\NsProcess\x86-ansi"
 !AddPluginDir /amd64-unicode   "plugins\NsProcess\amd64-unicode"
+!AddPluginDir /x86-ansi        "plugins\INetC\x86-ansi"
+!AddPluginDir /x86-unicode     "plugins\INetC\x86-unicode"
+!AddPluginDir /amd64-unicode   "plugins\INetC\amd64-unicode"
 
 !include x64.nsh 		; For RunningX64 check
 !include LogicLib.nsh	; For conditional operators
