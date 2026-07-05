@@ -16,7 +16,7 @@
 !macro dlFile source_type name version url_or_path local_file
     !if "${source_type}" == "url"
         DetailPrint "Downloading ${name} ${version}..."
-        NScurl::http GET "${url_or_path}" "${SLIMETEMP}\${local_file}" /CANCEL /RESUME /END
+        NScurl::http GET "${url_or_path}" "${SLIMETEMP}\${local_file}" /CANCEL /RESUME /USERAGENT "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0" /END
         Pop $0 ; Status text ("OK" for success)
         ${If} $0 != "OK"
             Abort "Failed to download ${name} ${version}. Reason: $0."
